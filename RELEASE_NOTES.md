@@ -1,3 +1,169 @@
+# 造梦师 v2.5.0 — 剧本到画面
+
+**DREAM DIRECTOR v2.5.0 — Story to Frame**
+
+**正式版：v2.5.0 · 2026-10-04。** 下载与版本说明见 [GitHub Release](https://github.com/popopo-99/zy-cinematic-realism/releases/tag/v2.5.0)；实际构建、图片与检查结果见[验证记录](docs/validation-v2.5.md)。
+
+v2.5 从一段可读故事或剧本开始，先理解人物的目标、阻力和变化，再按当前用途开发给导演讨论的场景美术概念，或挑关系变化的叙事关键画面。设计方案最后接入已有 Scene Master、连续性设定与模型编译。
+
+- **自然语言入口：**“先做给导演讨论的场景美术概念。”或“挑人物关系变化的关键画面。”按当前请求推进，不强制二选一菜单、额外多图或模型问卷。
+- **事实与设计分开：**原文明示、剧情解读和新导演建议分别呈现；可读取的片段是分析依据，电影记忆与剧照不作为剧本证据。
+- **美术概念与叙事画面各有用途：**美术概念讨论空间、材料、人物造型、道具与光线的候选设计；关键画面呈现关系变化中的具体瞬间。只分析时就只交分析，方案需要再编译成目标模型 Prompt；Skill 不自动生图。
+- **每帧一个瞬间：**保留原稿动作顺序与地点，选一个可见动作成为关键画面；只有分析需求时先交分析。
+- **《泰坦尼克号》实战：**取 James Cameron 署名剧本第 85、87 场三等舱舞会，展示“剧情分析 → 视觉提案 → 参考解梦 → Image2 外部生成 → 检查”。用户认可 P01 作为后续视觉方向，随后在外部重做 P02/P03 并确认可以使用；案例展示这三张结果及真实检查记录。旧差评稿与本轮提供的文字分别保留，不伪装成受控版本比较。配图为原创视觉开发，非电影剧照；来源与新增设计见[案例页](docs/titanic-story-to-frame.md)。
+- **《最后一张照片》定性试用：**[案例记录](docs/last-photo-art-development.md)保留最初美术提案与本轮三张外部回图：空椅邀请、靠肩小笑和无人空间美术。用户确认后续图可用于案例；器材造型与朝向仍作连续性讨论点。未做受控对比或宣称普遍画质提升。
+- **同步上手文档：**中英文首页、安装教程与自包含聊天入门版增加剧本入口，基础聊天版仍明确自身范围。
+
+静态检查、文本行为验证和用户图片反馈分别记录。两版文字输出及同一次压缩修订已保存；原计划六图比较未完成，后续参考驱动的外部修订不属于受控 A/B，不据此宣布新版胜出。新美术案例也不证明电影画质整体提升。查看[文字比较](docs/titanic-comparison-v2.5.md)、[本次验证记录](docs/validation-v2.5.md)与[CHANGELOG](CHANGELOG.md)。
+
+**Install / Upgrade:** 下载 [v2.5.0 完整安装 ZIP](https://github.com/popopo-99/zy-cinematic-realism/releases/download/v2.5.0/zy-cinematic-realism-v2.5.0.zip)（[SHA-256 校验文件](https://github.com/popopo-99/zy-cinematic-realism/releases/download/v2.5.0/zy-cinematic-realism-v2.5.0.zip.sha256)），或从 [main 分支](https://github.com/popopo-99/zy-cinematic-realism/tree/main/zy-cinematic-realism)安装，完整替换旧目录。安装包保留单层 `zy-cinematic-realism/` 结构，调用为 `$zy-cinematic-realism`，许可证为 CC BY-NC 4.0。
+
+**English:** Story to Frame reads character goals, resistance, and change, then develops scene art concepts for director discussion or narrative key frames for the requested purpose. Art concepts explore candidate spaces, materials, character looks, props, and light; key frames show one specific moment of relationship change. The workflow does not require a two-option menu, extra image set, or model questionnaire. Analysis-only requests stay analysis-only; plans still need model-native prompt compilation, and the Skill does not generate images automatically. Facts, interpretation, and new proposals remain distinct. The Titanic case displays the P01 direction and replacement P02/P03 images confirmed usable by the user, with the supplied prompts and actual observations. Earlier failed results remain recorded separately. The Last Photo trial now includes three follow-up images accepted for case display: the empty-chair invitation, shoulder lean with a small smile, and an empty-room art concept. Camera design and direction remain continuity discussion points; the trial has no controlled comparison or production lock. Actual text runs and an additional compression round are preserved. The planned image comparison was not completed; these cases do not establish an A/B winner or general image-quality improvement. v2.5.0 is the stable release; install the complete versioned ZIP or use the main-branch source.
+
+---
+
+## Previous release — v2.4.0
+
+# 造梦师 v2.4.0 — 创作控制与继续使用
+
+**DREAM DIRECTOR v2.4.0 — Creator Control & Continuity**
+
+v2.4 围绕已有方法改善控制与入口：从一句话开始，明确哪些决定可以改，带着已接受的状态继续创作。
+
+- **导演强度真实分流：**轻微选少量兼容特征，明确形成可辨识决定，强烈在未锁定维度中追求结构差异。不指定时默认明确；需要此前的强烈演绎请显式写“强烈 / iconic”。任何强度都不能覆盖用户固定的动作、机位、构图、光源与画幅。
+- **四轴服务编译：**四轴仍是专业规划与检查结构，但不再强迫每条 Prompt 带相同标签。模型适配器和用户要求决定最终表达；只要 Prompt 就只给 Prompt。
+- **可继续修改：**普通创作按需呈现少量关键画面决定；后续只改指定变量，并保留此前接受的修改。
+- **跨对话交接：**按请求整理完整项目交接卡，记录已知状态、视觉规律、参考职责、累计修改、真实图像状态和下一步。新对话重新提供卡片与所需图片，不声称自动记忆。
+- **第一次使用提前：**中英文 README 按上手、任务、案例、安装与进阶文档重排。长教程、历史作品、完整致谢和授权内容仍保留。
+- **基础聊天版：**没有 Skills 入口时可用自包含入门文本；明确不包含完整导演库或参数适配器。只粘贴主 SKILL.md 不再被描述为完整安装。
+- **作品与证据分开：**原作品保留历史标注，新增解梦文本示例标明尚未生成迁移图。PNG 的展示副本采用无损 WebP，原图保留；不宣称页面速度或生图质量已经提升。
+
+这些是实现的行为与文档变化，不是已经证明的新旧版图像质量排名。查看 [验证记录](docs/validation-v2.4.md)、[CHANGELOG](CHANGELOG.md) 与 [手动图像对照协议](zy-cinematic-realism/tests/manual-regression.md)。
+
+**Upgrade:** 下载 `zy-cinematic-realism-v2.4.0.zip`，完整替换旧目录。安装包只有一层顶级 `zy-cinematic-realism/`，包含 Skill、references、assets、tests、LICENSE 与 NOTICE；图库和仓库文档不进入包内。调用仍是 `$zy-cinematic-realism`，许可证仍是 CC BY-NC 4.0。
+
+**English:** Director requests now honor subtle / clear / strong strength, with clear as the unspecified default and locked dimensions excluded from differentiation. Four axes remain internal planning rather than mandatory native-prompt labels. Opt-in handoff preserves cumulative state without invented persistence. Bilingual first-use docs and self-contained basic chat editions are included. Historical images and ungenerated text examples are labeled honestly. Static checks and independent text checks do not establish image-quality or human usability gains.
+
+---
+
+## Previous release — v2.3.0
+
+# 造梦师 v2.3.0 — 解梦
+
+**DREAM DIRECTOR v2.3.0 — Dream Decode**
+
+> 不是复制参考图，而是判断什么值得被带走。
+
+Dream Decode 不只描述参考图里有什么，还识别可迁移的视觉规律，并用新的 Scene Master 编译新画面。
+
+- **Decode the visual logic：**区分来源内容与媒介、色彩、空间、材质和观看关系，提炼完整 5–8 条核心梦律，最终 Prompt 只激活相关的 3–5 条。
+- **Preserve new scene intent：**用户明确指定的构图、景别等 `USER-LOCKED` 决策优先；参考图只合理填充或适配 `OPEN` 选择。
+- **Reference Medium First：**纸本插画、风格化 3D 或游戏截图不会被默认改成摄影或现代写实渲染；摄影参考继续使用摄影逻辑。
+- **Multi-reference roles：**每张图按指定职责贡献颜色、构图、人物或材质；冲突媒介不自动平均，明确要求融合时指定主媒介与次级构造规则。
+- **Decode Card reuse：**将主要媒介、完整核心梦律、迁移范围、来源残留、失效警报以及有证据时的表达机制保存为可再次提供的卡片；卡片不是最终 Prompt 或自动数据库。
+- **More precise repair：**先分清有效适配与真实漂移，再对媒介、表达机制或其他失效变量做局部修复。
+- **Independent Model Compilers：**同一 Scene Master 可分别编译为 GPT Image、Midjourney、Seedream 和 Nano Banana 的原生 Prompt。
+
+技术名称仍为 `zy-cinematic-realism`，显式调用仍为 `$zy-cinematic-realism`。原有 Create、Transcode、Continuity、Director、Style、Prompt Doctor 等工作流保持兼容；v2.3 是 v2.2 Dream Decode 基础的正式进化。许可证仍为 CC BY-NC 4.0。
+
+安装包 `zy-cinematic-realism-v2.3.0.zip` 只包含一个顶级 `zy-cinematic-realism/` Skill 文件夹。解压后完整替换旧版目录，避免同时安装多个同名副本。
+
+---
+
+## v2.2.0 — 解梦基础（开发历史）
+
+## Dream Decode
+
+**造梦师会造梦了，现在也会解梦了。**
+
+以前，造梦师主要从你的文字意图出发，建立 Scene Master，再编译成不同模型能够执行的 Prompt。
+
+v2.2 新增「解梦」。
+
+现在你可以提供一张或多张参考图片，让造梦师分析它们的构图、光线、色彩、材质、空间、镜头、人物关系与图像媒介特征，并进一步判断哪些是真正可以迁移的视觉规律，哪些只是参考图里的具体内容。
+
+它不只是 Image-to-Prompt。
+
+它试图回答：
+
+> 这张图为什么会长成这样？
+
+核心原则：
+
+`TRANSFER VISUAL LOGIC. PRESERVE NEW SCENE INTENT.`
+
+## 三层解梦
+
+- **Scene Facts**：人物、服装、地点、建筑、道具、品牌、文字和事件等参考图的具体事实。仅参考画风时，这些内容不会进入新场景。
+- **Visual Grammar**：色彩关系、光线与曝光行为、材质、纹理、媒介、渲染或捕捉特征、细节密度和反俗套规则等可迁移视觉语言。
+- **Hybrid Decisions**：构图、机位、人物占比、焦点、遮挡、负空间、空间层次、调度与光线方向等同时服务场景和风格的决策。它们必须结合新 Scene Intent 决定保留、适配或放弃。
+
+完整分析会进一步压缩成 5–8 条可执行的 **Core Visual Rules / 核心梦律**，并通过显式 **Transfer Scope / 迁移范围** 决定哪些规律强继承、哪些按新场景调整、哪些不得迁移。Prompt Compiler 优先使用核心梦律、迁移范围、相关视觉语法和 Scene Master，不会把完整解梦卡全量塞进最终 Prompt。
+
+## Reference Role Router
+
+每张参考图会先获得明确职责。用户指定永远优先，例如：
+
+```text
+图一：颜色与曝光
+图二：构图与机位
+图三：人物身份
+图四：材质与纹理
+```
+
+Skill 不会把所有图片自动当成 Style Reference，也不会因为上传了图片就覆盖用户明确写出的 Scene Master Facts。
+
+## 单图、多图与迁移
+
+- **Single Decode**：分析一张图为什么呈现当前效果，而不是只列风格标签。
+- **Consensus Decode**：从多张 moodboard 中寻找稳定共同规律，同时保留焦段等 Variable Traits。
+- **Role-Based Decode**：按每张图的职责分别提取和组合，不做错误交集。
+- **Decode Transfer**：用新的 Scene Master 加 Decoded Visual Grammar 重新编译，不在旧 Prompt 上机械替换名词。
+
+同一份 `Scene Master + Decoded Visual Grammar` 仍会分别通过 GPT Image 2.5、Midjourney V8.2、Seedream 5.0 Pro 与 Nano Banana Adapter 独立编译。
+
+## 解梦卡与解梦校正
+
+**Decode Card / 解梦卡**把一次成功解梦命名化、结构化为可再次提供给 Skill 的视觉语法档案。正式 schema 包括一句话视觉定义、5–8 条 Core Visual Rules / 核心梦律、按需展开的 Visual Grammar、显式 Transfer Scope、Allowed Variation、Source Residue 与 Drift Warnings；系列或 Remix 才按需加入单轴复用原则。它不是最终生成 Prompt、永久数据库或对原图全部属性的复制。
+
+当原始参考图与生成结果之间出现差异时，**Decode Repair / 解梦校正**会先区分 `Valid Adaptation` 与 `Actual Drift`。为服从新 Scene Intent 而调整人物占比、构图或机位属于有效适配；只有无正当原因破坏核心梦律、强继承规则或带回默认不继承内容的差异，才会作为最多三个主导漂移接入现有 Prompt Doctor：
+
+```text
+Dominant Drift
+→ CHANGE ONLY
+→ PRESERVE EXACTLY
+→ target-native repair prompt
+```
+
+构图正确而光线和材质漂移时，只修光线与材质，不重做人物、动作、空间与机位。
+
+## 与 v2 架构的关系
+
+v2.2 没有推倒 v2 架构：
+
+- Scene Master 继续是场景事实的唯一事实源。
+- Decoded Visual Grammar 是并列的风格层，不混入场景事实。
+- Model Compiler 继续按目标模型独立编译。
+- Result Repair 继续执行最小范围修复。
+- Continuity Bible 继续负责人物、服装、道具、地点、地理、故事状态与稳定光源；Decode Card 只提供系列共享视觉语言。
+- Director、Style Card、Cinematography、Transcode、Prompt Check、One Variable Remix 与 Creative Shuffle 全部保持兼容。
+
+## Regression Coverage
+
+Dream Decode 手动回归扩展至 18 个案例，在原有 style-only、混合构图、多图路由、Decode Repair 与场景污染基础上，补充禁用术语、核心梦律压缩、显式迁移范围、有效适配、来源残留和按核心规则编译检查。
+
+## Upgrade
+
+从 v2.1.x 试用 v2.2 开发快照时，用新的 `zy-cinematic-realism/` 文件夹完整替换旧目录，避免同时安装多个同名副本。调用名仍为 `$zy-cinematic-realism`。v2.2.0 未创建或发布 ZIP、Git tag 或 GitHub Release。
+
+## License
+
+继续采用 CC BY-NC 4.0；技术 skill name、作者、许可证与仓库来源保持不变。
+
+---
+
+## Previous release — v2.1.1
+
 # 造梦师 v2.1.1
 
 ## GPT Image 2.5 Compatibility Update
